@@ -1,0 +1,29 @@
+{
+  "name": "dumpster",
+  "version": "0.0.0",
+  "description": "Dump any JS object to valid human-readable JSON",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "lint": "eslint ."
+  },
+  "keywords": [
+    "dump",
+    "json",
+    "stringify",
+    "serialize",
+    "circular"
+  ],
+  "author": "Evgeniy Galkin <unikoid@gmail.com>",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/unikoid/dumpster.git"
+  },
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^3.0.1",
+    "eslint-config-xo": "^0.15.2",
+    "mocha": "^2.5.3"
+  }
+}
