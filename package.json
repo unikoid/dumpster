@@ -1,6 +1,6 @@
 {
   "name": "dumpster",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Dump any JS object to valid human-readable JSON",
   "main": "index.js",
   "scripts": {
@@ -16,8 +16,8 @@
   ],
   "author": "Evgeniy Galkin <unikoid@gmail.com>",
   "repository": {
-      "type": "git",
-      "url": "https://github.com/unikoid/dumpster.git"
+    "type": "git",
+    "url": "https://github.com/unikoid/dumpster.git"
   },
   "license": "ISC",
   "dependencies": {},
