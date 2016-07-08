@@ -1,6 +1,6 @@
 {
   "name": "dumpster",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Dump any JS object to valid human-readable JSON",
   "main": "index.js",
   "scripts": {
