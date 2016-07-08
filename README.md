@@ -40,7 +40,7 @@ console.log(dump(req, {pretty: true}));
 
 ## TODO:
 
-- Pre-ES6 environment support (now you need Object.assign and WeakSet polyfills)
+- Pre-ES6 environment support (now you need Object.assign polyfill and const keyword support)
 - Browser builds
 - Memory usage benchmark
 
@@ -77,56 +77,56 @@ There are plenty of tools that solves similar tasks, but all of them have their 
 Benchmarks are implemented using [benchmark](https://www.npmjs.com/package/benchmark) module. See the source code [here](./benchmark).
 Data from http://mtgjson.com is used as an example of large JSON dataset.
 
-I got the following benchmark results on my laptop:
+I got the following benchmark results on my laptop and nodejs v4:
 
 ```
 Benchmarking with tiny JS object
-dumpster (depth: 2) x 56,990 ops/sec ±1.34% (82 runs sampled)
-dumpster (depth: Infinity) x 34,368 ops/sec ±1.38% (84 runs sampled)
-dumpster (pretty) x 29,036 ops/sec ±1.93% (87 runs sampled)
-JSON.stringify x 220,139 ops/sec ±1.60% (83 runs sampled)
-JSON.stringify (pretty) x 55,766 ops/sec ±1.35% (85 runs sampled)
-util.inspect (depth: 2) x 15,973 ops/sec ±1.54% (85 runs sampled)
-util.inspect (depth: Infinity) x 8,261 ops/sec ±1.54% (87 runs sampled)
-util.format (%j) x 197,480 ops/sec ±1.29% (87 runs sampled)
-json-stringify-safe x 26,140 ops/sec ±1.62% (84 runs sampled)
-json-stringify-safe (pretty) x 22,919 ops/sec ±1.55% (88 runs sampled)
-circular-json x 37,951 ops/sec ±2.42% (81 runs sampled)
-circular-json (pretty) x 28,412 ops/sec ±3.06% (72 runs sampled)
+dumpster (depth: 2) x 65,318 ops/sec ±1.40% (85 runs sampled)
+dumpster (depth: Infinity) x 39,443 ops/sec ±1.71% (87 runs sampled)
+dumpster (pretty) x 34,469 ops/sec ±1.13% (87 runs sampled)
+JSON.stringify x 237,355 ops/sec ±1.32% (89 runs sampled)
+JSON.stringify (pretty) x 59,712 ops/sec ±1.02% (89 runs sampled)
+util.inspect (depth: 2) x 15,146 ops/sec ±1.32% (89 runs sampled)
+util.inspect (depth: Infinity) x 8,434 ops/sec ±1.34% (90 runs sampled)
+util.format (%j) x 210,131 ops/sec ±1.41% (90 runs sampled)
+json-stringify-safe x 25,030 ops/sec ±3.06% (83 runs sampled)
+json-stringify-safe (pretty) x 22,264 ops/sec ±2.12% (83 runs sampled)
+circular-json x 37,935 ops/sec ±3.73% (79 runs sampled)
+circular-json (pretty) x 26,561 ops/sec ±2.11% (82 runs sampled)
 
 Benchmarking with circular JS object
-dumpster (depth: 2) x 49,207 ops/sec ±1.78% (80 runs sampled)
-dumpster (depth: Infinity) x 28,805 ops/sec ±1.74% (80 runs sampled)
-dumpster (pretty) x 25,218 ops/sec ±1.88% (84 runs sampled)
-util.inspect (depth: 2) x 12,064 ops/sec ±2.04% (80 runs sampled)
-util.inspect (depth: Infinity) x 6,810 ops/sec ±1.80% (85 runs sampled)
-json-stringify-safe x 16,361 ops/sec ±1.86% (75 runs sampled)
-json-stringify-safe (pretty) x 15,153 ops/sec ±1.73% (83 runs sampled)
-circular-json x 25,566 ops/sec ±1.82% (80 runs sampled)
-circular-json (pretty) x 22,141 ops/sec ±2.16% (83 runs sampled)
+dumpster (depth: 2) x 55,658 ops/sec ±1.55% (85 runs sampled)
+dumpster (depth: Infinity) x 33,038 ops/sec ±2.04% (82 runs sampled)
+dumpster (pretty) x 25,904 ops/sec ±2.90% (79 runs sampled)
+util.inspect (depth: 2) x 12,770 ops/sec ±1.72% (82 runs sampled)
+util.inspect (depth: Infinity) x 6,931 ops/sec ±2.16% (80 runs sampled)
+json-stringify-safe x 17,769 ops/sec ±2.59% (73 runs sampled)
+json-stringify-safe (pretty) x 14,756 ops/sec ±1.97% (79 runs sampled)
+circular-json x 25,914 ops/sec ±1.86% (80 runs sampled)
+circular-json (pretty) x 22,910 ops/sec ±1.92% (84 runs sampled)
 
 Benchmarking with http.ClientRequest
-dumpster (depth: 2) x 11,393 ops/sec ±2.15% (82 runs sampled)
-dumpster (depth: Infinity) x 5,112 ops/sec ±1.94% (82 runs sampled)
-dumpster (pretty) x 4,881 ops/sec ±1.66% (83 runs sampled)
-util.inspect (depth: 2) x 5,652 ops/sec ±1.82% (84 runs sampled)
-util.inspect (depth: Infinity) x 1,358 ops/sec ±1.87% (85 runs sampled)
-json-stringify-safe x 2,705 ops/sec ±2.29% (79 runs sampled)
-json-stringify-safe (pretty) x 2,621 ops/sec ±2.12% (78 runs sampled)
-circular-json x 5,199 ops/sec ±1.85% (82 runs sampled)
-circular-json (pretty) x 4,902 ops/sec ±1.81% (83 runs sampled)
+dumpster (depth: 2) x 12,127 ops/sec ±2.79% (82 runs sampled)
+dumpster (depth: Infinity) x 5,172 ops/sec ±3.62% (76 runs sampled)
+dumpster (pretty) x 5,421 ops/sec ±1.96% (84 runs sampled)
+util.inspect (depth: 2) x 5,326 ops/sec ±2.11% (83 runs sampled)
+util.inspect (depth: Infinity) x 1,376 ops/sec ±1.73% (85 runs sampled)
+json-stringify-safe x 2,867 ops/sec ±2.32% (82 runs sampled)
+json-stringify-safe (pretty) x 2,749 ops/sec ±1.92% (81 runs sampled)
+circular-json x 5,255 ops/sec ±2.09% (82 runs sampled)
+circular-json (pretty) x 4,976 ops/sec ±2.36% (82 runs sampled)
 
 Benchmarking with large JSON dataset
-dumpster (depth: 2) x 66.78 ops/sec ±1.69% (68 runs sampled)
-dumpster (depth: Infinity) x 1.52 ops/sec ±4.82% (8 runs sampled)
-dumpster (pretty) x 1.26 ops/sec ±4.40% (8 runs sampled)
-JSON.stringify x 7.20 ops/sec ±7.40% (22 runs sampled)
-JSON.stringify (pretty) x 1.39 ops/sec ±6.38% (8 runs sampled)
-util.inspect (depth: 2) x 5.43 ops/sec ±6.36% (18 runs sampled)
-util.inspect (depth: Infinity) x 0.32 ops/sec ±6.32% (5 runs sampled)
-util.format (%j) x 6.88 ops/sec ±7.24% (21 runs sampled)
-json-stringify-safe x 0.58 ops/sec ±2.78% (6 runs sampled)
-json-stringify-safe (pretty) x 0.55 ops/sec ±4.18% (6 runs sampled)
+dumpster (depth: 2) x 58.45 ops/sec ±1.66% (60 runs sampled)
+dumpster (depth: Infinity) x 1.74 ops/sec ±5.42% (9 runs sampled)
+dumpster (pretty) x 1.42 ops/sec ±5.54% (8 runs sampled)
+JSON.stringify x 8.20 ops/sec ±8.18% (25 runs sampled)
+JSON.stringify (pretty) x 1.55 ops/sec ±10.81% (9 runs sampled)
+util.inspect (depth: 2) x 6.09 ops/sec ±3.05% (19 runs sampled)
+util.inspect (depth: Infinity) x 0.35 ops/sec ±2.57% (5 runs sampled)
+util.format (%j) x 8.17 ops/sec ±5.54% (24 runs sampled)
+json-stringify-safe x 0.54 ops/sec ±11.63% (6 runs sampled)
+json-stringify-safe (pretty) x 0.51 ops/sec ±5.88% (6 runs sampled)
 circular-json@0.3.0 couldn't pass this benchmark in reasonable time. Looks like
 it takes about a minute for this library to dump provided example.
 ```
